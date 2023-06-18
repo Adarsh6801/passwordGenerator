@@ -14,11 +14,16 @@ import {NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
+import { PasswordOptionsComponent } from './components/password-options/password-options.component';
+import {NgFor} from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ClipboardModule } from 'ngx-clipboard';
 @NgModule({
   declarations: [
     AppComponent,
     PasswordGeneratorComponent,
-    PasswordStrengthComponent
+    PasswordStrengthComponent,
+    PasswordOptionsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,9 @@ import {MatCardModule} from '@angular/material/card';
     NgIf,
     MatSliderModule,
     MatProgressBarModule,
+    MatCheckboxModule,
+    NgFor,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 
@@ -14,12 +14,13 @@ export class PasswordStrengthComponent {
   bufferValue = 75;
   progressColor!: string;
   addValue!:number;
+  @Output() dataEvent = new EventEmitter<number>();
 
   getColorByValue(): string {
     if(this.value<1){
       this.value=1
     }
-    this.addValue= Math.round(this.value/4)
+    this.addValue= Math.ceil(this.value/4)
     if (this.value < 30) {
       return 'primary'; // Green color for low progress
     } else if (this.value >= 30 && this.value < 70) {
@@ -33,10 +34,13 @@ export class PasswordStrengthComponent {
 
   strength():string{
     if (this.value < 30) {
+      this.dataEvent.emit(this.value);
       return 'Week'; // Green color for low progress
     } else if (this.value >= 30 && this.value < 70) {
+      this.dataEvent.emit(this.value);
       return 'Medium'; // Yellow color for medium progress
     } else {
+      this.dataEvent.emit(this.value);
       return 'Strong'; // Red color for high progress
     }
   }
